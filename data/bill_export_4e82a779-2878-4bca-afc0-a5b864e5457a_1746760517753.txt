@@ -1,0 +1,12 @@
+===HÓA ĐƠN(TEXT EXPORT)===
+Order ID: 4e82a779-2878-4bca-afc0-a5b864e5457a
+Thời gian: Fri May 09 10:15:17 GMT+07:00 2025
+----------------------------------
+- Gà nướng phô mai (Gà nướng100000.0 VND)
+- Ba chỉ bò mỹ (Bò nướng150000.0 VND)
+- Má heo sốt chua ngọt (Heo nướng120000.0 VND)
+- Gà nướng muối ớt (Gà nướng95000.0 VND)
+- Dẻ sườn bò sốt cay (Bò nướng135000.0 VND)
+----------------------------------
+Tổng cộng: 600000.0 VND
+===================================

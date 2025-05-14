@@ -1,0 +1,6 @@
+Gà nướng phô mai;Gà nướng;100000.0
+Ba chỉ bò mỹ;Bò nướng;150000.0
+Má heo sốt chua ngọt;Heo nướng;120000.0
+Gà nướng muối ớt;Gà nướng;95000.0
+Dẻ sườn bò sốt cay;Bò nướng;135000.0
+Sườn cây nướng;Heo nướng;110000.0
