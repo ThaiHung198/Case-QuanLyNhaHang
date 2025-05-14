@@ -11,7 +11,7 @@ import java.util.InputMismatchException;
 public class AdminPanel {
     private Scanner scanner;
     private FileManager fileManager;
-    private List<Meal> menu; // Reference to the shared menu list
+    private List<Meal> menu;
     private MainController adminController;
 
     public AdminPanel(Scanner scanner, FileManager fileManager, List<Meal> menu, MainController adminController) {
@@ -45,7 +45,7 @@ public class AdminPanel {
                     adminChoice = scanner.nextInt();
                 } else {
                     System.out.println("Lựa chọn không hợp lệ. Vui lòng nhập số.");
-                    scanner.nextLine(); // Consume invalid input
+                    scanner.nextLine();
                     continue;
                 }
             } catch (InputMismatchException e) {
