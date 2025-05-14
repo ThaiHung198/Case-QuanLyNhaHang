@@ -19,18 +19,6 @@ public class Main {
         // Đọc menu từ file
         List<Meal> menu = fileManager.loadMenuFromFile();
 
-        if (menu.isEmpty()) {
-            menu = Arrays.asList(
-                    new Dish("Gà nướng phô mai", "Gà nướng", 100000),
-                    new Dish("Ba chỉ bò mỹ", "Bò nướng", 150000),
-                    new Dish("Má heo sốt chua ngọt", "Heo nướng", 120000),
-                    new Dish("Gà nướng muối ớt", "Gà nướng", 95000),
-                    new Dish("Dẻ sườn bò sốt cay", "Bò nướng", 135000),
-                    new Dish("Sườn cây nướng", "Heo nướng", 110000)
-            );
-            fileManager.saveMenuToFile(menu);
-        }
-
         // Chọn vai trò
         System.out.println("Bạn là: 1 - ADMIN, 2 - KHÁCH HÀNG");
         int role = 0;

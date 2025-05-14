@@ -11,6 +11,7 @@ public class FileManager implements Serializable {
     private static final String MENU_FILE_PATH_BINARY = "./data/menu.bin";
     private static final String ORDER_HISTORY_FILE_PATH_BINARY = "./data/order_history.bin";
     private static final String Bill_EXPORT_TEXT_PATH_PREFIX = "./data/bill_export_";
+    private static final String LAST_ORDER_ID_FILE_PATH = "./data/last_order_id.txt";
 
     static {
         File dataDir = new File("./data");
@@ -146,9 +147,9 @@ public class FileManager implements Serializable {
 
     public void saveMenuToFileBinary(List<Meal> menu) {
 
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("./data/menu.bin"))) { // Đảm bảo đường dẫn đúng
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(MENU_FILE_PATH_BINARY))) { // Đảm bảo đường dẫn đúng
             oos.writeObject(menu);
-            System.out.println("Menu (nhị phân) đã được lưu vào: ./data/menu.bin");
+            System.out.println("Menu (nhị phân) đã được lưu vào:" + MENU_FILE_PATH_BINARY);
         } catch (IOException e) {
             System.err.println("Lỗi khi ghi file menu nhị phân: " + e.getMessage());
             e.printStackTrace();
@@ -157,7 +158,7 @@ public class FileManager implements Serializable {
 
     public List<Meal> loadMenuFromFileBinary() {
         List<Meal> menuFromFile = new ArrayList<>();
-        File file = new File("./data/menu.bin");
+        File file = new File(MENU_FILE_PATH_BINARY);
 
         if (!file.exists()) {
             System.out.println("File menu nhị phân '" + file.getAbsolutePath() + "' không tồn tại. Trả về menu rỗng.");

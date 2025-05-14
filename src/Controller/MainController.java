@@ -15,10 +15,26 @@ public class MainController {
     public MainController() {
         this.dao = new FileManager();
         this.currentMenu = dao.loadMenuFromFileBinary();
-        if (this.currentMenu == null) {
-            System.err.println("Cảnh báo: loadMenuFromFileBinary trả về null. Khởi tạo menu rỗng.");
-            this.currentMenu = new ArrayList<>();
+        if (this.currentMenu == null || this.currentMenu.isEmpty()) {
+            System.out.println("Không tìm thấy file menu hoặc menu rỗng. Đang khởi tạo menu mặc định...");
+            this.currentMenu = createAndReturnDefaultMenu();
+            dao.saveMenuToFileBinary(this.currentMenu);
+            System.out.println("Đã tạo và lưu menu mặc định vào file.");
+        } else {
+            System.out.println("Đã tải menu thành công từ file.");
+
         }
+    }
+
+    private List<Meal> createAndReturnDefaultMenu() {
+        List<Meal> defaultMeals = new ArrayList<>();
+        defaultMeals.add(new Dish("Gà nướng phô mai", "Gà nướng", 100000));
+        defaultMeals.add(new Dish("Ba chỉ bò mỹ", "Bò nướng", 150000));
+        defaultMeals.add(new Dish("Má heo sốt chua ngọt", "Heo nướng", 120000));
+        defaultMeals.add(new Dish("Gà nướng muối ớt", "Gà nướng", 95000));
+        defaultMeals.add(new Dish("Dẻ sườn bò sốt cay", "Bò nướng", 135000));
+        defaultMeals.add(new Dish("Sườn cây nướng", "Heo nướng", 110000));
+        return defaultMeals;
     }
 
     // --- QUẢN LÝ MENU ---
