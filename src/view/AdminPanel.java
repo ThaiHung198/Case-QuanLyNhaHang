@@ -50,15 +50,14 @@ public class AdminPanel {
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Lựa chọn không hợp lệ. Vui lòng nhập số.");
-                scanner.nextLine(); // Consume invalid input
+                scanner.nextLine();
                 continue;
             }
-            scanner.nextLine(); // Consume newline
+            scanner.nextLine();
 
             switch (adminChoice) {
                 case 1:
-                    // Assuming MainController.addDish updates the menu data source
-                    // or modifies the 'menu' list if it has a reference to it.
+
                     adminController.addDish(scanner);
                     break;
                 case 2:
@@ -68,13 +67,9 @@ public class AdminPanel {
                     adminController.deleteDish(scanner);
                     break;
                 case 4:
-                    adminController.viewDishes(); // Should display the current state of the menu
+                    adminController.viewDishes();
                     break;
                 case 0:
-                    // This saves the 'menu' list. It's crucial that MainController's
-                    // operations have effectively updated this list or the underlying
-                    // file that this list might be reloaded from before saving.
-                    // Sticking to original logic: save the menu list instance.
                     fileManager.saveMenuToFile(this.menu);
                     System.out.println("Đã lưu và thoát.");
                     running = false;

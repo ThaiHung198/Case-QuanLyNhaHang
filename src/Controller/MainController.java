@@ -159,17 +159,15 @@ public class MainController {
                     System.out.println("Giá mới phải là số không âm. Giữ nguyên giá cũ.");
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Giá nhập không phải là số. Giữ nguyên giá cũ."); // Dòng 168
+                System.out.println("Giá nhập không phải là số. Giữ nguyên giá cũ.");
             }
         }
-        // Dòng trống System.out.println(); // Dòng 171
-        // Lỗi "Cannot resolve method 'saveMenuToFileBinary'" xảy ra ở đây nếu BaseDAO không có phương thức này
-        dao.saveMenuToFileBinary(this.currentMenu); // Dòng 172 (theo lỗi của bạn)
-        System.out.println("Đã cập nhật thông tin món '" + dishToEdit.getName() + "' thành công!"); // Dòng 174
+        dao.saveMenuToFileBinary(this.currentMenu);
+        System.out.println("Đã cập nhật thông tin món '" + dishToEdit.getName() + "' thành công!");
     }
 
     public void deleteDish(Scanner scanner) {
-        System.out.println("\n--- XOÁ MÓN ĂN ---"); // Dòng 178 (theo ảnh)
+        System.out.println("\n--- XOÁ MÓN ĂN ---");
         if (this.currentMenu.isEmpty()) {
             System.out.println("Menu rỗng, không có gì để xoá.");
             return;
@@ -202,8 +200,7 @@ public class MainController {
 
         if (confirm.equals("y") || confirm.equals("yes")) {
             this.currentMenu.remove(choice - 1);
-            // Lỗi "Cannot resolve method 'saveMenuToFileBinary'" xảy ra ở đây nếu BaseDAO không có phương thức này
-            dao.saveMenuToFileBinary(this.currentMenu); // Dòng 211 (theo lỗi của bạn)
+            dao.saveMenuToFileBinary(this.currentMenu);
             System.out.println("Đã xoá món '" + mealToRemove.getName() + "' khỏi menu.");
         } else {
             System.out.println("Hủy thao tác xoá.");
@@ -264,16 +261,14 @@ public class MainController {
 
             System.out.println("  Tổng tiền: " + order.getTotal() + " VND");
 
-            // Lỗi "Cannot resolve symbol 'Payment'" xảy ra ở đây nếu thiếu import Model.interfaces.Payment;
-            Payment paymentDetails = order.getPaymentDetails(); // Dòng 274 (theo lỗi của bạn)
+            Payment paymentDetails = order.getPaymentDetails();
             if (paymentDetails != null) {
                 System.out.print("  Hình thức thanh toán: ");
-                // Lỗi ép kiểu xảy ra ở đây nếu Payment không được resolve đúng
-                if (paymentDetails instanceof CardPayment) { // Dòng 277
+                if (paymentDetails instanceof CardPayment) {
                     CardPayment cp = (CardPayment) paymentDetails; // Dòng 278
                     System.out.println("Thẻ - Khách: " + cp.getCustomerName() + ", Số thẻ: " + cp.getCardNumber());
-                } else if (paymentDetails instanceof CashPayment) { // Dòng 280
-                    CashPayment cp = (CashPayment) paymentDetails; // Dòng 281
+                } else if (paymentDetails instanceof CashPayment) {
+                    CashPayment cp = (CashPayment) paymentDetails;
                     System.out.println("Tiền mặt - Khách: " + cp.getCustomerName());
                 } else {
                     System.out.println("Chưa xác định (" + paymentDetails.getClass().getSimpleName() + ")");

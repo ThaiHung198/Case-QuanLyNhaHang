@@ -14,14 +14,11 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         FileManager fileManager = new FileManager();
-        // MainController might need FileManager and/or the menu list.
-        // For this refactoring, we'll initialize it here and pass to AdminPanel.
-        MainController adminController = new MainController();
 
+        MainController adminController = new MainController();
         // Đọc menu từ file
         List<Meal> menu = fileManager.loadMenuFromFile();
 
-        // Nếu chưa có món, khởi tạo mặc định và lưu
         if (menu.isEmpty()) {
             menu = Arrays.asList(
                     new Dish("Gà nướng phô mai", "Gà nướng", 100000),
@@ -31,28 +28,28 @@ public class Main {
                     new Dish("Dẻ sườn bò sốt cay", "Bò nướng", 135000),
                     new Dish("Sườn cây nướng", "Heo nướng", 110000)
             );
-            fileManager.saveMenuToFile(menu); // Save initial default menu
+            fileManager.saveMenuToFile(menu);
         }
 
         // Chọn vai trò
         System.out.println("Bạn là: 1 - ADMIN, 2 - KHÁCH HÀNG");
-        int role = 0; // Default to an invalid role
+        int role = 0;
         try {
             if (scanner.hasNextInt()) {
                 role = scanner.nextInt();
             } else {
                 System.out.println("Lựa chọn không hợp lệ. Vui lòng nhập số.");
-                scanner.nextLine(); // Consume invalid input
+                scanner.nextLine();
                 scanner.close();
                 return;
             }
         } catch (InputMismatchException e) {
             System.out.println("Lựa chọn không hợp lệ. Vui lòng nhập số.");
-            scanner.nextLine(); // Consume invalid input
+            scanner.nextLine();
             scanner.close();
             return;
         }
-        scanner.nextLine(); // Consume the rest of the line after nextInt()
+        scanner.nextLine();
 
         if (role == 1) {
             AdminPanel adminPanel = new AdminPanel(scanner, fileManager, menu, adminController);

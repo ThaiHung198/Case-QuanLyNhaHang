@@ -1,6 +1,5 @@
 package Model.entities;
-import java.io.Serializable; // Thêm import
-
+import java.io.Serializable;
 import Model.interfaces.Payment;
 
 public class CardPayment implements Payment,Serializable {

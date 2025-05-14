@@ -26,15 +26,15 @@ public class UserPanel {
                 choice = scanner.nextInt();
             } else {
                 System.out.println("Lựa chọn không hợp lệ. Vui lòng nhập số.");
-                scanner.nextLine(); // Consume invalid input
+                scanner.nextLine();
                 return;
             }
         } catch (InputMismatchException e) {
             System.out.println("Lựa chọn không hợp lệ. Vui lòng nhập số.");
-            scanner.nextLine(); // Consume invalid input
+            scanner.nextLine();
             return;
         }
-        scanner.nextLine(); // Consume newline
+        scanner.nextLine();
 
         Order order;
         if (choice == 1) {
@@ -47,15 +47,15 @@ public class UserPanel {
                     roomChoice = scanner.nextInt();
                 } else {
                     System.out.println("Lựa chọn không hợp lệ. Vui lòng nhập số.");
-                    scanner.nextLine(); // Consume invalid input
+                    scanner.nextLine();
                     return;
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Lựa chọn không hợp lệ. Vui lòng nhập số.");
-                scanner.nextLine(); // Consume invalid input
+                scanner.nextLine();
                 return;
             }
-            scanner.nextLine(); // Consume newline
+            scanner.nextLine();
 
             if (roomChoice < 1 || roomChoice > RoomType.values().length) {
                 System.out.println("Loại phòng không hợp lệ.");
@@ -76,7 +76,7 @@ public class UserPanel {
         }
         for (int i = 0; i < menu.size(); i++) {
             Meal m = menu.get(i);
-            if (m != null) { // Basic null check for safety
+            if (m != null) {
                 System.out.println((i + 1) + ". " + m.getCategory() + " - " + m.getName() + ": " + String.format("%,.0f", m.getPrice()) + " VND");
             }
         }
@@ -90,15 +90,15 @@ public class UserPanel {
                     idxOrderChoice = scanner.nextInt();
                 } else {
                     System.out.println("Vui lòng nhập số thứ tự hợp lệ.");
-                    scanner.nextLine(); // Consume invalid input
+                    scanner.nextLine();
                     continue;
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Vui lòng nhập số thứ tự hợp lệ.");
-                scanner.nextLine(); // Consume invalid input
+                scanner.nextLine();
                 continue;
             }
-            scanner.nextLine(); // Consume newline
+            scanner.nextLine();
 
             if (idxOrderChoice == 0) break;
             if (idxOrderChoice > 0 && idxOrderChoice <= menu.size()) {
@@ -126,15 +126,15 @@ public class UserPanel {
                 payMethod = scanner.nextInt();
             } else {
                 System.out.println("Lựa chọn không hợp lệ. Vui lòng nhập số.");
-                scanner.nextLine(); // Consume invalid input
+                scanner.nextLine();
                 return;
             }
         } catch (InputMismatchException e) {
             System.out.println("Lựa chọn không hợp lệ. Vui lòng nhập số.");
-            scanner.nextLine(); // Consume invalid input
+            scanner.nextLine();
             return;
         }
-        scanner.nextLine(); // Consume newline
+        scanner.nextLine();
         Payment payment;
 
         if (payMethod == 1) {

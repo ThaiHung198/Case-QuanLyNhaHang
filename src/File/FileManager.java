@@ -145,8 +145,7 @@ public class FileManager implements Serializable {
     }
 
     public void saveMenuToFileBinary(List<Meal> menu) {
-        // Nội dung phương thức như đã thảo luận trước đó
-        // Sử dụng ObjectOutputStream để ghi danh sách menu
+
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("./data/menu.bin"))) { // Đảm bảo đường dẫn đúng
             oos.writeObject(menu);
             System.out.println("Menu (nhị phân) đã được lưu vào: ./data/menu.bin");
@@ -156,21 +155,18 @@ public class FileManager implements Serializable {
         }
     }
 
-    @SuppressWarnings("unchecked")
     public List<Meal> loadMenuFromFileBinary() {
-        List<Meal> menuFromFile = new ArrayList<>(); // Khởi tạo là ArrayList
-        File file = new File("./data/menu.bin"); // Hoặc MENU_FILE_PATH_BINARY của bạn
+        List<Meal> menuFromFile = new ArrayList<>();
+        File file = new File("./data/menu.bin");
 
         if (!file.exists()) {
             System.out.println("File menu nhị phân '" + file.getAbsolutePath() + "' không tồn tại. Trả về menu rỗng.");
-            return menuFromFile; // Trả về ArrayList rỗng
+            return menuFromFile;
         }
 
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
             Object readObject = ois.readObject();
             if (readObject instanceof List) {
-                // Quan trọng: Tạo một ArrayList mới từ danh sách đọc được
-                // để đảm bảo nó là mutable.
                 List<?> rawList = (List<?>) readObject;
                 for (Object item : rawList) {
                     if (item instanceof Meal) {
@@ -180,14 +176,14 @@ public class FileManager implements Serializable {
                     }
                 }
                 System.out.println("Menu (nhị phân) đã được tải từ: " + file.getAbsolutePath() + " với " + menuFromFile.size() + " món.");
-            } else if (readObject != null) { // Xử lý trường hợp file có dữ liệu nhưng không phải List
+            } else if (readObject != null) {
                 System.err.println("Dữ liệu trong file menu nhị phân không phải là một List. Kiểu dữ liệu: " + readObject.getClass().getName());
-            } else { // Trường hợp readObject là null (file có thể đã được tạo nhưng chưa ghi gì)
+            } else {
                 System.out.println("File menu nhị phân không chứa đối tượng List nào (có thể rỗng hoặc lỗi ghi trước đó).");
             }
         } catch (EOFException e) {
             System.out.println("File menu nhị phân rỗng hoặc đã đọc hết: " + file.getAbsolutePath());
-            // Trả về menuFromFile (đang là ArrayList rỗng) là hợp lý
+
         } catch (IOException e) {
             System.err.println("Lỗi IO khi đọc file menu nhị phân: " + e.getMessage());
             e.printStackTrace();
@@ -198,6 +194,6 @@ public class FileManager implements Serializable {
             System.err.println("Lỗi ép kiểu khi đọc dữ liệu từ file menu: " + e.getMessage());
             e.printStackTrace();
         }
-        return menuFromFile; // Luôn trả về một ArrayList (có thể rỗng)
+        return menuFromFile;
     }
 }
